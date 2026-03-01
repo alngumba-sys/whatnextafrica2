@@ -234,7 +234,7 @@ export function SystemGovernance({ onClose }: SystemGovernanceProps) {
           <div className="px-8 py-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-gradient-to-br from-rose-400 to-rose-500 rounded-lg shadow-md">
+                <div className="p-3 bg-[#66023C] rounded-lg shadow-md">
                   <Shield className="w-8 h-8 text-white" strokeWidth={2.5} />
                 </div>
                 <div>
@@ -296,7 +296,7 @@ export function SystemGovernance({ onClose }: SystemGovernanceProps) {
                 {showLeftArrow && (
                   <button
                     onClick={handleLeftArrowClick}
-                    className="absolute left-0 top-0 bottom-0 z-20 w-12 bg-gradient-to-r from-white to-transparent flex items-center justify-start pl-2 hover:from-rose-50 transition-colors group"
+                    className="absolute left-0 top-0 bottom-0 z-20 w-12 bg-white flex items-center justify-start pl-2 hover:bg-rose-50 transition-colors group"
                     aria-label="Scroll left"
                   >
                     <div className="bg-rose-500 text-white rounded-full p-1.5 shadow-lg animate-pulse-subtle group-hover:bg-rose-600 transition-colors">
@@ -309,7 +309,7 @@ export function SystemGovernance({ onClose }: SystemGovernanceProps) {
                 {showRightArrow && (
                   <button
                     onClick={handleRightArrowClick}
-                    className="absolute right-0 top-0 bottom-0 z-20 w-12 bg-gradient-to-l from-white to-transparent flex items-center justify-end pr-2 hover:from-rose-50 transition-colors group"
+                    className="absolute right-0 top-0 bottom-0 z-20 w-12 bg-white flex items-center justify-end pr-2 hover:bg-rose-50 transition-colors group"
                     aria-label="Scroll right"
                   >
                     <div className="bg-rose-500 text-white rounded-full p-1.5 shadow-lg animate-pulse-subtle group-hover:bg-rose-600 transition-colors">
@@ -468,7 +468,7 @@ export function SystemGovernance({ onClose }: SystemGovernanceProps) {
             <Button
               onClick={handleConfirm}
               disabled={!justification.trim()}
-              className="bg-gradient-to-r from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-[#66023C] text-white hover:bg-[#4a0128] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <CheckCircle2 className="w-4 h-4 mr-2" />
               Confirm S.N.A. Override

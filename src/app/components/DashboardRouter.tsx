@@ -7,7 +7,8 @@ import { HierarchyPage } from '@/app/components/HierarchyPage';
 import { RoleDashboard } from '@/app/components/RoleDashboard';
 import { SystemGovernance } from '@/app/components/SystemGovernance';
 import { CreateNewUserDialog } from '@/app/components/CreateNewUserDialog';
-import coatOfArms from 'figma:asset/ed57e0c3f3c3ffae8d9e72531b73a87f82baf646.png';
+import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import coatOfArms from 'figma:asset/a4ef2a41d34a4fb02e01c58896dc3b258b86fad6.png';
 
 type View = 'home' | 'hierarchy' | 'dashboard' | 'governance';
 
@@ -26,27 +27,27 @@ export function DashboardRouter() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#F2F3F4' }}>
+    <div className="min-h-screen bg-[#FAF9F6]">
       {/* Top Navigation Bar */}
-      <div className="border-b sticky top-0 z-20 shadow-sm" style={{ backgroundColor: '#fff1e6' }}>
+      <div className="border-b sticky top-0 z-20 shadow-sm bg-[#66023C]">
         <div className="max-w-[1800px] mx-auto px-8 py-4">
           <div className="flex items-center justify-between">
             {/* Left: Logo and Title */}
             <div className="flex items-center gap-6">
-              <img src={coatOfArms} alt="Coat of Arms" className="h-12 w-auto" />
-              <h1 className="text-xl font-bold text-gray-900">
+              <ImageWithFallback src={coatOfArms} alt="Coat of Arms" className="h-12 w-auto" />
+              <h1 className="text-xl font-bold text-white">
                 Ministry of Interior & National Administration
               </h1>
             </div>
 
             {/* Center: Navigation Buttons */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-1 bg-white/50 rounded-lg p-1">
+            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-1 bg-black/20 rounded-lg p-1">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setCurrentView('dashboard')}
-                className={`text-gray-700 hover:text-gray-900 hover:bg-white/80 ${
-                  currentView === 'dashboard' ? 'bg-white shadow-sm' : ''
+                className={`text-white hover:text-white hover:bg-white/20 ${
+                  currentView === 'dashboard' ? 'bg-white/30 shadow-sm' : ''
                 }`}
               >
                 <Home className="w-4 h-4 mr-2" />
@@ -56,8 +57,8 @@ export function DashboardRouter() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setCurrentView('hierarchy')}
-                className={`text-gray-700 hover:text-gray-900 hover:bg-white/80 ${
-                  currentView === 'hierarchy' ? 'bg-white shadow-sm' : ''
+                className={`text-white hover:text-white hover:bg-white/20 ${
+                  currentView === 'hierarchy' ? 'bg-white/30 shadow-sm' : ''
                 }`}
               >
                 Organizational Chart
@@ -67,8 +68,8 @@ export function DashboardRouter() {
                   variant="ghost"
                   size="sm"
                   onClick={() => setCurrentView('governance')}
-                  className={`text-gray-700 hover:text-gray-900 hover:bg-white/80 ${
-                    currentView === 'governance' ? 'bg-white shadow-sm' : ''
+                  className={`text-white hover:text-white hover:bg-white/20 ${
+                    currentView === 'governance' ? 'bg-white/30 shadow-sm' : ''
                   }`}
                 >
                   <Shield className="w-4 h-4 mr-2" />
@@ -82,13 +83,18 @@ export function DashboardRouter() {
               {isSNA && (
                 <Button
                   onClick={() => setShowCreateUserDialog(true)}
-                  className="flex items-center gap-2 bg-violet-600 hover:bg-violet-700 text-white px-4 py-2 rounded-lg transition-colors shadow-md"
+                  className="flex items-center gap-2 bg-[#8B7355] hover:bg-[#6d5940] text-white px-4 py-2 rounded-lg transition-colors shadow-md"
                 >
                   <UserPlus className="w-4 h-4 mr-2" />
                   Create New Employee
                 </Button>
               )}
-              <Button variant="outline" size="sm" onClick={logout}>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                onClick={logout}
+                className="bg-white/10 border-white/30 text-white hover:bg-white/20 hover:text-white"
+              >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout
               </Button>

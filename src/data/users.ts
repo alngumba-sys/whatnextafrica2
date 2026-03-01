@@ -1,4 +1,4 @@
-export type UserRole = 'CS' | 'PS' | 'PAS' | 'RC' | 'CC' | 'DC' | 'ACC' | 'SNA' | 'US' | 'AS';
+export type UserRole = 'CS' | 'PS' | 'PAS' | 'RC' | 'CC' | 'DC' | 'ACC' | 'SNA' | 'US' | 'AS' | 'IT';
 
 export interface User {
   id: string;
@@ -355,6 +355,23 @@ export const users: User[] = [
   { id: 'as6', username: 'thomas.onyango', name: 'Thomas Onyango', role: 'AS', ministryId: '8', email: 'as.transport@interior.go.ke', currentStation: 'Ministry of Transport' },
   { id: 'as7', username: 'eunice.njoki', name: 'Eunice Njoki', role: 'AS', ministryId: '9', email: 'as.water@interior.go.ke', currentStation: 'Ministry of Water' },
   { id: 'as8', username: 'kevin.mutinda', name: 'Kevin Mutinda', role: 'AS', ministryId: '5', email: 'as2.health@interior.go.ke', currentStation: 'Ministry of Health' },
+  
+  // IT Manager
+  { 
+    id: 'it1', 
+    username: 'it.manager', 
+    name: 'IT Manager', 
+    role: 'IT', 
+    email: 'it.manager@interior.go.ke',
+    dateOfBirth: '1985-06-15',
+    gender: 'Male',
+    employeeNumber: 'IT/2020/0001',
+    dateOfJoining: '2020-01-15',
+    yearsOfService: 6,
+    nationality: 'Kenyan',
+    education: 'Bachelor of Information Technology',
+    currentStation: 'Ministry HQ - ICT Department'
+  },
 ];
 
 export const getRoleName = (role: UserRole): string => {
@@ -369,6 +386,7 @@ export const getRoleName = (role: UserRole): string => {
     SNA: 'Secretary National Administrator',
     US: 'Under Secretary',
     AS: 'Assistant Secretary',
+    IT: 'IT Manager',
   };
   return roleNames[role];
 };

@@ -190,7 +190,7 @@ export function AuditOverridesCompliance({ onCriticalAction }: AuditOverridesCom
       </div>
 
       {/* Vision 2030 Compliance */}
-      <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg p-6 shadow-sm">
+      <div className="bg-green-50 border border-green-200 rounded-lg p-6 shadow-sm">
         <h3 className="text-lg font-semibold text-gray-900 mb-2">Vision 2030 Compliance Status</h3>
         <p className="text-sm text-gray-700 mb-4">Governance reforms alignment tracking</p>
         

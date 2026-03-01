@@ -8,6 +8,7 @@ import { LeaveManagement } from '@/app/components/LeaveManagement';
 import { AIReshuffle } from '@/app/components/AIReshuffle';
 import { InsightDetails } from '@/app/components/InsightDetails';
 import { StatisticDetails } from '@/app/components/StatisticDetails';
+import { ITDashboard } from '@/app/components/ITDashboard';
 import { 
   Users, Calendar, FileText, ArrowRight, CheckCircle2, Clock, 
   AlertCircle, TrendingUp, MapPin, BarChart3, Settings,
@@ -61,6 +62,11 @@ export function RoleDashboard() {
   if (!user) return null;
 
   const roleName = getRoleName(user.role);
+  
+  // Show IT Dashboard for IT Manager
+  if (user.role === 'IT') {
+    return <ITDashboard />;
+  }
   
   // Filter transfers based on user's role and jurisdiction
   const filteredTransfers = filterTransfersByJurisdiction(allTransfers, user);
@@ -610,14 +616,14 @@ export function RoleDashboard() {
       <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4 mb-6">
         {/* Transfer Management */}
         {(canApproveTransfers(user.role) || canInitiateTransfers(user.role)) && (
-          <Card className="p-4 bg-white border-gray-200 w-full">
+          <Card className="p-4 bg-[#F5F5DC] border-[#66023C]/20 w-full">
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-blue-50 p-2 rounded-lg">
-                <ArrowRight className="w-5 h-5 text-blue-600" />
+              <div className="bg-[#E8DCC8] p-2 rounded-lg">
+                <ArrowRight className="w-5 h-5 text-[#66023C]" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">Transfer Management</h3>
-                <p className="text-xs text-gray-500">Manage officer transfers</p>
+                <p className="text-xs text-gray-600">Manage officer transfers</p>
               </div>
             </div>
             
@@ -625,7 +631,7 @@ export function RoleDashboard() {
               {canInitiateTransfers(user.role) && (
                 <button 
                   onClick={() => setActiveView('transfers')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-white hover:bg-[#E8DCC8] transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <FileText className="w-4 h-4 text-gray-600" />
@@ -640,7 +646,7 @@ export function RoleDashboard() {
               {canApproveTransfers(user.role) && (
                 <button 
                   onClick={() => setActiveView('transfers')}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-white hover:bg-[#E8DCC8] transition-colors"
                 >
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-600" />
@@ -657,20 +663,20 @@ export function RoleDashboard() {
               {(user.role === 'PS' || user.role === 'PAS' || user.role === 'SNA') && (
                 <button 
                   onClick={() => setShowAIReshuffle(true)}
-                  className="w-full flex items-center justify-between p-3 rounded-lg bg-gradient-to-r from-purple-50 to-blue-50 hover:from-purple-100 hover:to-blue-100 transition-all border border-purple-200"
+                  className="w-full flex items-center justify-between p-3 rounded-lg bg-[#E8DCC8] hover:bg-[#D2B48C] transition-all border border-[#66023C]/30"
                 >
                   <div className="flex items-center gap-2">
-                    <Brain className="w-4 h-4 text-purple-600" />
-                    <span className="text-sm font-medium text-purple-900">AI Reshuffle</span>
-                    <Sparkles className="w-3 h-3 text-purple-600" />
+                    <Brain className="w-4 h-4 text-[#66023C]" />
+                    <span className="text-sm font-medium text-[#66023C]">AI Reshuffle</span>
+                    <Sparkles className="w-3 h-3 text-[#66023C]" />
                   </div>
-                  <ArrowRight className="w-4 h-4 text-purple-400" />
+                  <ArrowRight className="w-4 h-4 text-[#66023C]/60" />
                 </button>
               )}
               
               <button 
                 onClick={() => setActiveView('transfers')}
-                className="w-full flex items-center justify-between p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors"
+                className="w-full flex items-center justify-between p-3 rounded-lg bg-white hover:bg-[#E8DCC8] transition-colors"
               >
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-gray-600" />
@@ -683,14 +689,14 @@ export function RoleDashboard() {
         )}
 
         {/* My Leave */}
-        <Card className="p-4 bg-white border-gray-200">
+        <Card className="p-4 bg-[#F5F5DC] border-[#66023C]/20">
           <div className="flex items-center gap-3 mb-4">
-            <div className="bg-green-50 p-2 rounded-lg">
-              <Calendar className="w-5 h-5 text-green-600" />
+            <div className="bg-[#E8DCC8] p-2 rounded-lg">
+              <Calendar className="w-5 h-5 text-[#66023C]" />
             </div>
             <div>
               <h3 className="font-semibold text-gray-900">My Leave</h3>
-              <p className="text-xs text-gray-500">Manage leave applications</p>
+              <p className="text-xs text-gray-600">Manage leave applications</p>
             </div>
           </div>
           
@@ -732,14 +738,14 @@ export function RoleDashboard() {
 
         {/* Leave Management (for supervisors) */}
         {canUpdateLeaveStatus(user.role) && (
-          <Card className="p-4 bg-white border-gray-200">
+          <Card className="p-4 bg-[#F5F5DC] border-[#66023C]/20">
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-teal-50 p-2 rounded-lg">
-                <Users className="w-5 h-5 text-teal-600" />
+              <div className="bg-[#E8DCC8] p-2 rounded-lg">
+                <Users className="w-5 h-5 text-[#66023C]" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">Leave Management</h3>
-                <p className="text-xs text-gray-500">Manage team leave</p>
+                <p className="text-xs text-gray-600">Manage team leave</p>
               </div>
             </div>
             
@@ -774,14 +780,14 @@ export function RoleDashboard() {
 
         {/* Reporting Status */}
         {canManageReporting(user.role) && (
-          <Card className="p-4 bg-white border-gray-200">
+          <Card className="p-4 bg-[#F5F5DC] border-[#66023C]/20">
             <div className="flex items-center gap-3 mb-4">
-              <div className="bg-indigo-50 p-2 rounded-lg">
-                <CheckCircle2 className="w-5 h-5 text-indigo-600" />
+              <div className="bg-[#E8DCC8] p-2 rounded-lg">
+                <CheckCircle2 className="w-5 h-5 text-[#66023C]" />
               </div>
               <div>
                 <h3 className="font-semibold text-gray-900">Reporting Status</h3>
-                <p className="text-xs text-gray-500">Track officer reporting</p>
+                <p className="text-xs text-gray-600">Track officer reporting</p>
               </div>
             </div>
             
@@ -802,10 +808,10 @@ export function RoleDashboard() {
       {/* Recent Transfers - Compact */}
       {/* Transfer View Filter Banner - Only show for non-top-level users */}
       {!['CS', 'PS', 'PAS'].includes(user.role) && transferViewDescription && (
-        <Card className="mb-4 bg-blue-50 border-blue-200">
+        <Card className="mb-4 bg-[#E8DCC8] border-[#66023C]/30">
           <div className="p-3 flex items-start gap-2">
-            <Info className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
-            <p className="text-xs text-blue-900 leading-relaxed">
+            <Info className="w-4 h-4 text-[#66023C] mt-0.5 flex-shrink-0" />
+            <p className="text-xs text-gray-900 leading-relaxed">
               <span className="font-semibold">Transfer View:</span> {transferViewDescription}
             </p>
           </div>
@@ -903,9 +909,9 @@ export function RoleDashboard() {
       </Card>
 
       {/* Role Information - Compact */}
-      <Card className="mt-4 bg-blue-50 border-blue-200">
+      <Card className="mt-4 bg-[#E8DCC8] border-[#66023C]/30">
         <div className="p-4 flex items-start gap-3">
-          <AlertCircle className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
+          <AlertCircle className="w-4 h-4 text-[#66023C] mt-0.5 flex-shrink-0" />
           <div>
             <h4 className="font-semibold text-sm text-gray-900 mb-1">Your Role & Responsibilities</h4>
             <p className="text-xs text-gray-700 leading-relaxed">

@@ -1622,7 +1622,7 @@ export function StatisticDetails({ metricId, metricName, metricValue, onClose, u
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white flex items-center justify-between">
+        <div className="bg-[#66023C] p-6 text-white flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold">{metricName}</h2>
             <p className="text-sm text-white/90 mt-1">Current Value: {metricValue}</p>

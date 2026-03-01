@@ -38,7 +38,7 @@ export function RegionalCommissionerDetailPage({ rc, onBack }: RegionalCommissio
         <Card className="p-8 bg-white">
           {/* Header Section */}
           <div className="flex items-start gap-6 mb-6">
-            <div className="w-28 h-28 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-4xl font-bold shrink-0 shadow-md">
+            <div className="w-28 h-28 rounded-xl bg-violet-600 flex items-center justify-center text-white text-4xl font-bold shrink-0 shadow-md">
               {rc.initials}
             </div>
             <div className="flex-1">
@@ -242,7 +242,7 @@ export function RegionalCommissionerDetailPage({ rc, onBack }: RegionalCommissio
                     <DollarSign className="w-5 h-5 text-violet-600" />
                     Regional Budget
                   </h3>
-                  <div className="bg-gradient-to-r from-violet-50 to-violet-100 rounded-lg p-4 border border-violet-200">
+                  <div className="bg-violet-100 rounded-lg p-4 border border-violet-200">
                     <div className="text-sm text-violet-700 font-medium mb-1">Annual Operational Budget</div>
                     <div className="text-2xl font-bold text-violet-900">{rc.budgetAllocated}</div>
                     <div className="text-xs text-violet-600 mt-1">Fiscal Year 2025/2026</div>

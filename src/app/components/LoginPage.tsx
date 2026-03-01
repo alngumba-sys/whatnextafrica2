@@ -1,20 +1,28 @@
 import { useState } from 'react';
 import { users, getRoleName } from '@/data/users';
 import { useAuth } from '@/contexts/AuthContext';
-import { LogIn, Shield, Eye, EyeOff } from 'lucide-react';
+import { LogIn, Shield, Eye, EyeOff, Search, Check, ChevronsUpDown } from 'lucide-react';
 import { Card } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
 import { Label } from '@/app/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/app/components/ui/select';
-import coatOfArms from 'figma:asset/ed57e0c3f3c3ffae8d9e72531b73a87f82baf646.png';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/app/components/ui/command';
+import { Popover, PopoverContent, PopoverTrigger } from '@/app/components/ui/popover';
+import { cn } from '@/app/components/ui/utils';
+import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
+import coatOfArms from 'figma:asset/a4ef2a41d34a4fb02e01c58896dc3b258b86fad6.png';
 
 export function LoginPage() {
   const [selectedUsername, setSelectedUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [open, setOpen] = useState(false);
   const { login } = useAuth();
+
+  console.log('LoginPage rendering');
+
+  const selectedUser = users.find(u => u.username === selectedUsername);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,13 +47,13 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#faedcd' }}>
+    <div className="min-h-screen flex items-center justify-center bg-[#FAF9F6]">
       <div className="w-full max-w-md px-4">
-        <Card className="p-8 shadow-lg">
+        <Card className="p-8 shadow-lg bg-white border-[#66023C]/20">
           {/* Header */}
           <div className="text-center mx-[0px] mt-[0px] mb-[7px]">
             <div className="flex justify-center mb-4">
-              <img src={coatOfArms} alt="Kenya Coat of Arms" className="h-24 w-auto" />
+              <ImageWithFallback src={coatOfArms} alt="Kenya Coat of Arms" className="h-24 w-auto" />
             </div>
             <p className="font-semibold text-gray-600 uppercase tracking-wide text-[16px] mx-[0px] mt-[-10px] mb-[8px]">
               Office of the President
@@ -62,27 +70,74 @@ export function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="username">Select User</Label>
-              <Select value={selectedUsername} onValueChange={setSelectedUsername}>
-                <SelectTrigger id="username" className="w-full">
-                  <SelectValue placeholder="Choose your username" />
-                </SelectTrigger>
-                <SelectContent className="max-h-[300px]">
-                  {users.map(user => (
-                    <SelectItem key={user.id} value={user.username}>
-                      <div className="flex items-center gap-2">
-                        <Shield className="w-4 h-4 text-gray-500" />
-                        <div>
-                          <div className="font-medium">{user.name}</div>
-                          <div className="text-xs text-gray-500">
-                            {getRoleName(user.role)}
-                            {user.region && ` - ${user.region}`}
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-full justify-between"
+                  >
+                    {selectedUser ? (
+                      <div className="flex items-center gap-2 text-left">
+                        <Shield className="w-4 h-4 text-gray-500 flex-shrink-0" />
+                        <div className="overflow-hidden">
+                          <div className="font-medium truncate">{selectedUser.name}</div>
+                          <div className="text-xs text-gray-500 truncate">
+                            {getRoleName(selectedUser.role)}
+                            {selectedUser.region && ` - ${selectedUser.region}`}
                           </div>
                         </div>
                       </div>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                    ) : (
+                      "Search for a user..."
+                    )}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-[400px] p-0" align="start">
+                  <Command>
+                    <CommandInput placeholder="Type to search (e.g., 'IT Manager', 'john.doe')..." />
+                    <CommandList>
+                      <CommandEmpty>No user found.</CommandEmpty>
+                      <CommandGroup>
+                        {users.map((user) => {
+                          const roleDisplay = getRoleName(user.role);
+                          const searchValue = `${user.username} ${user.name} ${roleDisplay}`.toLowerCase();
+                          
+                          return (
+                            <CommandItem
+                              key={user.id}
+                              value={searchValue}
+                              onSelect={() => {
+                                setSelectedUsername(user.username);
+                                setOpen(false);
+                              }}
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  selectedUsername === user.username ? "opacity-100" : "opacity-0"
+                                )}
+                              />
+                              <div className="flex items-center gap-2">
+                                <Shield className="w-4 h-4 text-gray-500" />
+                                <div>
+                                  <div className="font-medium">{user.name}</div>
+                                  <div className="text-xs text-gray-500">
+                                    {roleDisplay}
+                                    {user.region && ` - ${user.region}`}
+                                  </div>
+                                </div>
+                              </div>
+                            </CommandItem>
+                          );
+                        })}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
 
             <div className="space-y-2">
@@ -117,7 +172,7 @@ export function LoginPage() {
               </div>
             )}
 
-            <Button type="submit" className="w-full bg-[rgb(50,49,65)]" size="lg">
+            <Button type="submit" className="w-full bg-[#66023C] hover:bg-[#4a0128]" size="lg">
               <LogIn className="w-4 h-4 mr-2" />
               Sign In
             </Button>

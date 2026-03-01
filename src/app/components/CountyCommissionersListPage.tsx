@@ -394,7 +394,7 @@ export function CountyCommissionersListPage({ onBack, onSelectCC }: CountyCommis
               >
                 {/* Name */}
                 <div className="col-span-3 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0">
                     {cc.initials}
                   </div>
                   <div>

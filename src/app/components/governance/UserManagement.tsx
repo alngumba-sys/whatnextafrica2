@@ -322,7 +322,7 @@ export function UserManagement({ onCriticalAction }: UserManagementProps) {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <Card className="p-6 border-violet-200 bg-gradient-to-r from-violet-50 to-purple-50">
+      <Card className="p-6 border-violet-200 bg-violet-50">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="p-3 bg-violet-600 rounded-lg">

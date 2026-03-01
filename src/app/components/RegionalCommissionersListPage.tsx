@@ -136,15 +136,15 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
   const SortButton = ({ field, children }: { field: SortField; children: React.ReactNode }) => (
     <button
       onClick={() => handleSort(field)}
-      className="flex items-center gap-1 hover:text-violet-600 transition-colors font-semibold text-left w-full group"
+      className="flex items-center gap-1 hover:text-[#66023C] transition-colors font-semibold text-left w-full group"
     >
       {children}
       <span className="ml-auto">
         {sortField === field ? (
           sortOrder === 'asc' ? (
-            <ChevronUp className="w-4 h-4 text-violet-600" />
+            <ChevronUp className="w-4 h-4 text-[#66023C]" />
           ) : (
-            <ChevronDown className="w-4 h-4 text-violet-600" />
+            <ChevronDown className="w-4 h-4 text-[#66023C]" />
           )
         ) : (
           <ArrowUpDown className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100" />
@@ -276,7 +276,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
         {/* AI Insights */}
         <div className="mb-6">
           <div className="flex items-center gap-2 mb-4">
-            <Lightbulb className="w-5 h-5 text-violet-600" />
+            <Lightbulb className="w-5 h-5 text-[#66023C]" />
             <h2 className="text-lg font-bold text-gray-900">Insights</h2>
             <Badge variant="outline" className="text-xs">Based on Current Data</Badge>
           </div>
@@ -307,7 +307,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
           </div>
           <div className="grid grid-cols-4 gap-4">
             <Card 
-              className="p-3 bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="p-3 bg-blue-100 border-blue-200 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => {
                 setDashboardType('performance');
                 setShowPerformanceDashboard(true);
@@ -327,7 +327,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
             </Card>
 
             <Card 
-              className="p-3 bg-gradient-to-br from-green-50 to-green-100 border-green-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="p-3 bg-green-100 border-green-200 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => {
                 setDashboardType('budget');
                 setShowPerformanceDashboard(true);
@@ -344,7 +344,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
             </Card>
 
             <Card 
-              className="p-3 bg-gradient-to-br from-amber-50 to-amber-100 border-amber-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="p-3 bg-amber-100 border-amber-200 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => {
                 setDashboardType('utilization');
                 setShowPerformanceDashboard(true);
@@ -364,7 +364,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
             </Card>
 
             <Card 
-              className="p-3 bg-gradient-to-br from-red-50 to-red-100 border-red-200 cursor-pointer hover:shadow-md transition-shadow"
+              className="p-3 bg-red-100 border-red-200 cursor-pointer hover:shadow-md transition-shadow"
               onClick={() => {
                 setDashboardType('risks');
                 setShowPerformanceDashboard(true);
@@ -517,7 +517,7 @@ export function RegionalCommissionersListPage({ onBack, onSelectRC }: RegionalCo
                     </td>
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0 group-hover:scale-110 transition-transform">
+                        <div className="w-10 h-10 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0 group-hover:scale-110 transition-transform">
                           {rc.initials}
                         </div>
                         <div>

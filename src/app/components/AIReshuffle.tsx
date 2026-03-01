@@ -438,9 +438,10 @@ export function AIReshuffle({ onClose, onApprove }: AIReshuffleProps) {
                   Cancel
                 </Button>
                 <Button
+                  size="lg"
                   onClick={generateReshuffle}
                   disabled={!selectedRole || isGenerating}
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                  className="bg-purple-600 hover:bg-purple-700"
                 >
                   {isGenerating ? (
                     <>
@@ -460,17 +461,17 @@ export function AIReshuffle({ onClose, onApprove }: AIReshuffleProps) {
             <div className="space-y-4">
               {/* Summary Stats */}
               <div className="grid grid-cols-3 gap-4 mb-6">
-                <Card className="p-4 bg-gradient-to-br from-green-50 to-emerald-50 border-green-200">
+                <Card className="p-4 bg-green-100 border-green-200">
                   <div className="text-2xl font-bold text-green-700">{proposals.length}</div>
                   <div className="text-sm text-green-600">Officers to Reshuffle</div>
                 </Card>
-                <Card className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200">
+                <Card className="p-4 bg-blue-100 border-blue-200">
                   <div className="text-2xl font-bold text-blue-700">
                     {proposals.filter(p => p.neverBeenThere).length}
                   </div>
                   <div className="text-sm text-blue-600">Fresh Locations</div>
                 </Card>
-                <Card className="p-4 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200">
+                <Card className="p-4 bg-purple-100 border-purple-200">
                   <div className="text-2xl font-bold text-purple-700">
                     {proposals.length > 0 
                       ? Math.round(proposals.reduce((sum, p) => sum + p.yearsAtCurrent, 0) / proposals.length * 10) / 10
@@ -493,7 +494,7 @@ export function AIReshuffle({ onClose, onApprove }: AIReshuffleProps) {
                 {proposals.map((proposal, idx) => (
                   <Card key={proposal.officerId} className="p-4 hover:shadow-md transition-shadow">
                     <div className="flex items-start gap-4">
-                      <div className="bg-gradient-to-br from-purple-600 to-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0">
+                      <div className="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold flex-shrink-0">
                         {idx + 1}
                       </div>
                       
@@ -590,7 +591,7 @@ export function AIReshuffle({ onClose, onApprove }: AIReshuffleProps) {
                 <Button
                   onClick={handleApproveReshuffle}
                   disabled={proposals.filter(p => p.status !== 'omitted').length === 0}
-                  className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
+                  className="bg-green-600 hover:bg-green-700"
                 >
                   <CheckCircle2 className="w-4 h-4 mr-2" />
                   Approve & Create Transfers ({proposals.filter(p => p.status !== 'omitted').length})

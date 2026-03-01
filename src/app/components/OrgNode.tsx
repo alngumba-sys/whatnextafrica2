@@ -16,30 +16,30 @@ interface OrgNodeProps {
 export function OrgNode({ title, abbreviation, count, track, level, onClick, note, isClickable = false, isDimmed = false }: OrgNodeProps) {
   const trackConfig = {
     county: {
-      accent: 'bg-violet-500',
-      bg: 'bg-violet-50',
-      border: 'border-l-violet-500',
-      text: 'text-violet-700',
-      iconBg: 'bg-violet-500',
-      ring: 'ring-violet-500/20',
+      accent: 'bg-[#66023C]',
+      bg: 'bg-[#F5F5DC]',
+      border: 'border-l-[#66023C]',
+      text: 'text-[#66023C]',
+      iconBg: 'bg-[#66023C]',
+      ring: 'ring-[#66023C]/20',
       icon: Building2
     },
     secretariat: {
-      accent: 'bg-amber-500',
-      bg: 'bg-amber-50',
-      border: 'border-l-amber-500',
-      text: 'text-amber-700',
-      iconBg: 'bg-amber-500',
-      ring: 'ring-amber-500/20',
+      accent: 'bg-[#8B7355]',
+      bg: 'bg-[#E8DCC8]',
+      border: 'border-l-[#8B7355]',
+      text: 'text-[#8B7355]',
+      iconBg: 'bg-[#8B7355]',
+      ring: 'ring-[#8B7355]/20',
       icon: Users
     },
     top: {
-      accent: 'bg-rose-500',
-      bg: 'bg-rose-50',
-      border: 'border-l-rose-500',
-      text: 'text-rose-700',
-      iconBg: 'bg-rose-500',
-      ring: 'ring-rose-500/20',
+      accent: 'bg-[#8B0000]',
+      bg: 'bg-[#FFF8DC]',
+      border: 'border-l-[#8B0000]',
+      text: 'text-[#8B0000]',
+      iconBg: 'bg-[#8B0000]',
+      ring: 'ring-[#8B0000]/20',
       icon: Crown
     }
   };

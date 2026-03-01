@@ -38,7 +38,7 @@ export function CountyCommissionerDetailPage({ cc, onBack }: CountyCommissionerD
         <Card className="p-8 bg-white">
           {/* Header Section */}
           <div className="flex items-start gap-6 mb-6">
-            <div className="w-28 h-28 rounded-xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-4xl font-bold shrink-0 shadow-md">
+            <div className="w-28 h-28 rounded-xl bg-violet-600 flex items-center justify-center text-white text-4xl font-bold shrink-0 shadow-md">
               {cc.initials}
             </div>
             <div className="flex-1">
@@ -116,7 +116,7 @@ export function CountyCommissionerDetailPage({ cc, onBack }: CountyCommissionerD
               Performance & Budget
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-4 border border-green-200">
+              <div className="bg-green-100 rounded-lg p-4 border border-green-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-green-700 font-medium">Performance Score</span>
                   <Award className="w-5 h-5 text-green-600" />
@@ -126,7 +126,7 @@ export function CountyCommissionerDetailPage({ cc, onBack }: CountyCommissionerD
                   {cc.performanceScore >= 90 ? 'Excellent' : cc.performanceScore >= 85 ? 'Good' : 'Satisfactory'}
                 </div>
               </div>
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-4 border border-blue-200">
+              <div className="bg-blue-100 rounded-lg p-4 border border-blue-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-blue-700 font-medium">Budget Allocated</span>
                   <DollarSign className="w-5 h-5 text-blue-600" />
@@ -134,7 +134,7 @@ export function CountyCommissionerDetailPage({ cc, onBack }: CountyCommissionerD
                 <div className="text-3xl font-bold text-blue-900">{cc.budgetAllocated}</div>
                 <div className="text-xs text-blue-600 mt-1">FY 2023/24</div>
               </div>
-              <div className="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-4 border border-purple-200">
+              <div className="bg-purple-100 rounded-lg p-4 border border-purple-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-purple-700 font-medium">Budget Spent</span>
                   <DollarSign className="w-5 h-5 text-purple-600" />
@@ -142,7 +142,7 @@ export function CountyCommissionerDetailPage({ cc, onBack }: CountyCommissionerD
                 <div className="text-3xl font-bold text-purple-900">{cc.budgetSpent}</div>
                 <div className="text-xs text-purple-600 mt-1">As of Feb 2026</div>
               </div>
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-lg p-4 border border-amber-200">
+              <div className="bg-amber-100 rounded-lg p-4 border border-amber-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-amber-700 font-medium">Utilization Rate</span>
                   <Target className="w-5 h-5 text-amber-600" />

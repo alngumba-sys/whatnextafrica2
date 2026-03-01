@@ -105,7 +105,7 @@ export function CommissionerComparisonDialog({ open, onOpenChange, commissioners
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3 flex-1">
-                        <div className={`w-10 h-10 rounded-lg bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0`}>
+                        <div className={`w-10 h-10 rounded-lg bg-violet-600 flex items-center justify-center text-white text-sm font-bold shrink-0`}>
                           {rc.initials}
                         </div>
                         <div className="flex-1">
@@ -435,8 +435,8 @@ export function CommissionerComparisonDialog({ open, onOpenChange, commissioners
                 </table>
               </div>
             </div>
-            {/* Scroll indicator gradient */}
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+            {/* Scroll indicator */}
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-white/90 pointer-events-none" />
             <div className="absolute bottom-2 left-1/2 -translate-x-1/2 pointer-events-none">
               <div className="flex flex-col items-center gap-1 text-violet-600 animate-bounce">
                 <div className="text-xs font-medium">Scroll for more</div>

@@ -142,19 +142,19 @@ export function HierarchyPage() {
         </div>
 
         {/* Color Legend */}
-        <div className="bg-gray-50 border-b px-8 py-4">
+        <div className="bg-[#F5F5DC] border-b px-8 py-4">
           <div className="flex items-center gap-8">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-violet-500" />
-              <span className="text-sm text-gray-600">County Administration</span>
+              <div className="w-3 h-3 rounded-sm bg-[#66023C]" />
+              <span className="text-sm text-gray-700">County Administration</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-amber-500" />
-              <span className="text-sm text-gray-600">Secretariat</span>
+              <div className="w-3 h-3 rounded-sm bg-[#8B7355]" />
+              <span className="text-sm text-gray-700">Secretariat</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-sm bg-rose-500" />
-              <span className="text-sm text-gray-600">Executive</span>
+              <div className="w-3 h-3 rounded-sm bg-[#8B0000]" />
+              <span className="text-sm text-gray-700">Executive</span>
             </div>
           </div>
         </div>

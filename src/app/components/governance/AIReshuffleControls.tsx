@@ -24,7 +24,7 @@ export function AIReshuffleControls({ onCriticalAction }: AIReshuffleControlsPro
       </div>
 
       {/* AI Status */}
-      <div className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200 rounded-lg p-6 shadow-sm">
+      <div className="bg-purple-50 border border-purple-200 rounded-lg p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-100 rounded-lg">
@@ -171,7 +171,7 @@ export function AIReshuffleControls({ onCriticalAction }: AIReshuffleControlsPro
       </div>
 
       {/* Generate Reshuffle */}
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 shadow-sm">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 shadow-sm">
         <div className="flex items-center gap-3 mb-4">
           <TrendingUp className="w-6 h-6 text-blue-600" />
           <div>
@@ -181,7 +181,7 @@ export function AIReshuffleControls({ onCriticalAction }: AIReshuffleControlsPro
         </div>
 
         <Button
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800"
+          className="w-full bg-blue-600 text-white hover:bg-blue-700"
           onClick={() => {
             onCriticalAction(
               'Generate AI Reshuffle Suggestions',

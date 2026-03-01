@@ -125,7 +125,7 @@ export function TransferDetails({ transferId, onBack, onUpdate, transfers: provi
         {/* Left Column */}
         <div className="space-y-4">
           {/* Officer Profile */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-lg border border-blue-100">
+          <div className="bg-blue-100 p-4 rounded-lg border border-blue-100">
             <div className="flex items-center gap-3 mb-3">
               <div className="bg-blue-600 p-2.5 rounded-full">
                 <User className="w-6 h-6 text-white" />

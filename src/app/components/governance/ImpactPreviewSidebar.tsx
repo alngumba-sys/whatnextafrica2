@@ -175,7 +175,7 @@ export function ImpactPreviewSidebar() {
   return (
     <div className="w-96 border-l border-gray-200 bg-white flex flex-col h-full shadow-sm">
       {/* Sidebar Header */}
-      <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-rose-50 to-pink-50">
+      <div className="p-6 border-b border-gray-200 bg-rose-50">
         <div className="flex items-center gap-3 mb-2">
           <TrendingUp className="w-5 h-5 text-rose-600" />
           <h3 className="text-lg font-semibold text-gray-900">Impact Preview</h3>
@@ -276,7 +276,7 @@ export function ImpactPreviewSidebar() {
         {/* Compliance Status */}
         <div>
           <div className="text-xs text-gray-500 mb-3 font-semibold uppercase tracking-wide">Compliance Status</div>
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               <span className="text-sm font-semibold text-green-800">Fully Compliant</span>
