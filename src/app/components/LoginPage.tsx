@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { users, getRoleName } from '@/data/users';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLogo } from '@/contexts/LogoContext';
 import { LogIn, Shield, Eye, EyeOff, Search, Check, ChevronsUpDown } from 'lucide-react';
 import { Card } from '@/app/components/ui/card';
 import { Button } from '@/app/components/ui/button';
@@ -16,11 +17,39 @@ export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const { login } = useAuth();
+  const { loginLogo } = useLogo();
 
   console.log('LoginPage rendering');
 
   const selectedUser = users.find(u => u.username === selectedUsername);
+
+  // Custom filtering function for strict search matching
+  const filterUsers = (query: string) => {
+    if (!query || query.trim() === '') {
+      return users;
+    }
+
+    const searchTerm = query.toLowerCase().trim();
+    
+    return users.filter(user => {
+      const name = user.name.toLowerCase();
+      const username = user.username.toLowerCase();
+      const role = getRoleName(user.role).toLowerCase();
+      const region = user.region?.toLowerCase() || '';
+
+      // Check if search term matches any field
+      return (
+        name.includes(searchTerm) ||
+        username.includes(searchTerm) ||
+        role.includes(searchTerm) ||
+        region.includes(searchTerm)
+      );
+    });
+  };
+
+  const filteredUsers = filterUsers(searchQuery);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,9 +80,19 @@ export function LoginPage() {
           {/* Header */}
           <div className="text-center mx-[0px] mt-[0px] mb-[7px]">
             <div className="flex justify-center mb-4">
-              <div className="w-24 h-24 bg-[#66023C] rounded-full flex items-center justify-center">
-                <Shield className="w-12 h-12 text-white" />
-              </div>
+              {loginLogo ? (
+                <div className="w-24 h-24 rounded-full flex items-center justify-center overflow-hidden bg-white p-2 border-2 border-white">
+                  <img 
+                    src={loginLogo.url} 
+                    alt="Ministry Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="w-24 h-24 bg-[#66023C] rounded-full flex items-center justify-center">
+                  <Shield className="w-12 h-12 text-white" />
+                </div>
+              )}
             </div>
             <p className="font-semibold text-gray-600 uppercase tracking-wide text-[16px] mx-[0px] mt-[-10px] mb-[8px]">
               Office of the President
@@ -96,12 +135,16 @@ export function LoginPage() {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-[400px] p-0" align="start">
-                  <Command>
-                    <CommandInput placeholder="Type to search (e.g., 'IT Manager', 'john.doe')..." />
+                  <Command shouldFilter={false}>
+                    <CommandInput
+                      placeholder="Type to search (e.g., 'IT Manager', 'john.doe')..."
+                      value={searchQuery}
+                      onValueChange={setSearchQuery}
+                    />
                     <CommandList>
                       <CommandEmpty>No user found.</CommandEmpty>
                       <CommandGroup>
-                        {users.map((user) => {
+                        {filteredUsers.map((user) => {
                           const roleDisplay = getRoleName(user.role);
                           const searchValue = `${user.username} ${user.name} ${roleDisplay}`.toLowerCase();
                           

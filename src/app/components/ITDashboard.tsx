@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Card } from '@/app/components/ui/card';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLogo, type UploadedAsset } from '@/contexts/LogoContext';
 import { 
   Settings, Users, Shield, Database, Key, Activity, Lock, 
   Eye, AlertTriangle, CheckCircle, Clock, FileText, Download,
-  UserPlus, UserMinus, Search, Filter, MoreVertical
+  UserPlus, UserMinus, Search, Filter, MoreVertical, Image, Upload, Trash2, X, Star
 } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
 import { Input } from '@/app/components/ui/input';
@@ -36,6 +37,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/app/components/ui/dialog';
+import { toast } from 'sonner';
 
 // Mock data for demonstration
 const mockUsers = [
@@ -66,9 +68,122 @@ const mockBackups = [
 
 export function ITDashboard() {
   const { user } = useAuth();
+  const { uploadedAssets, addAsset, deleteAsset, primaryLogo, setPrimaryLogo } = useLogo();
   const [selectedTab, setSelectedTab] = useState('users');
   const [createUserOpen, setCreateUserOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Logo Management State
+  const [assetName, setAssetName] = useState('');
+  const [assetType, setAssetType] = useState('');
+  const [assetDescription, setAssetDescription] = useState('');
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [isUploading, setIsUploading] = useState(false);
+
+  // Handle file selection
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Validate file size (5MB max)
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('File size must be less than 5MB');
+      return;
+    }
+
+    // Validate file type
+    const validTypes = ['image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'];
+    if (!validTypes.includes(file.type)) {
+      toast.error('Only PNG, JPG, and SVG files are allowed');
+      return;
+    }
+
+    setSelectedFile(file);
+  };
+
+  // Handle asset upload
+  const handleUploadAsset = async () => {
+    // Validation
+    if (!assetName.trim()) {
+      toast.error('Please enter an asset name');
+      return;
+    }
+    if (!assetType) {
+      toast.error('Please select an asset type');
+      return;
+    }
+    if (!selectedFile) {
+      toast.error('Please select a file to upload');
+      return;
+    }
+
+    setIsUploading(true);
+
+    try {
+      // Convert file to base64 for display
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const newAsset: UploadedAsset = {
+          id: `asset-${Date.now()}`,
+          name: assetName,
+          type: assetType,
+          description: assetDescription,
+          url: e.target?.result as string,
+          size: selectedFile.size,
+          uploadedAt: new Date().toLocaleString(),
+        };
+
+        addAsset(newAsset);
+        
+        // Reset form
+        setAssetName('');
+        setAssetType('');
+        setAssetDescription('');
+        setSelectedFile(null);
+        
+        // Reset file input
+        const fileInput = document.getElementById('asset-file') as HTMLInputElement;
+        if (fileInput) fileInput.value = '';
+
+        toast.success(`Asset "${assetName}" uploaded successfully!`);
+        setIsUploading(false);
+      };
+
+      reader.onerror = () => {
+        toast.error('Failed to read file');
+        setIsUploading(false);
+      };
+
+      reader.readAsDataURL(selectedFile);
+    } catch (error) {
+      toast.error('Failed to upload asset');
+      setIsUploading(false);
+    }
+  };
+
+  // Handle asset deletion
+  const handleDeleteAsset = (assetId: string) => {
+    const asset = uploadedAssets.find(a => a.id === assetId);
+    deleteAsset(assetId);
+    toast.success(`Asset "${asset?.name}" deleted successfully`);
+  };
+
+  // Format asset type for display
+  const formatAssetType = (type: string) => {
+    const typeMap: Record<string, string> = {
+      'header': 'Header Logo',
+      'login': 'Login Screen',
+      'dashboard': 'Dashboard Icon',
+      'footer': 'Footer Logo',
+      'banner': 'Banner Image',
+      'other': 'Other'
+    };
+    return typeMap[type] || type;
+  };
+
+  // Calculate total storage used
+  const totalStorageUsed = uploadedAssets.reduce((sum, asset) => sum + asset.size, 0);
+  const storageMB = (totalStorageUsed / (1024 * 1024)).toFixed(2);
 
   // Stats
   const stats = {
@@ -146,7 +261,7 @@ export function ITDashboard() {
 
       {/* Main Content Tabs */}
       <Tabs value={selectedTab} onValueChange={setSelectedTab} className="space-y-6">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="users" className="data-[state=active]:bg-[#66023C] data-[state=active]:text-white">
             <Users className="w-4 h-4 mr-2" />
             User & Access Management
@@ -154,6 +269,10 @@ export function ITDashboard() {
           <TabsTrigger value="security" className="data-[state=active]:bg-[#66023C] data-[state=active]:text-white">
             <Shield className="w-4 h-4 mr-2" />
             System Security
+          </TabsTrigger>
+          <TabsTrigger value="logos" className="data-[state=active]:bg-[#66023C] data-[state=active]:text-white">
+            <Image className="w-4 h-4 mr-2" />
+            Logo Management
           </TabsTrigger>
           <TabsTrigger value="data" className="data-[state=active]:bg-[#66023C] data-[state=active]:text-white">
             <Database className="w-4 h-4 mr-2" />
@@ -618,6 +737,157 @@ export function ITDashboard() {
                 Schedule Access Review
               </Button>
             </div>
+          </Card>
+        </TabsContent>
+
+        {/* Logo Management */}
+        <TabsContent value="logos" className="space-y-6">
+          {/* Logo Upload Section */}
+          <Card className="p-6 border-[#66023C]/20">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <Image className="h-5 w-5 text-[#66023C]"/>
+                <div>
+                  <h3 className="font-bold text-[#66023C]">Platform Assets Management</h3>
+                  <p className="text-sm text-gray-600">Upload and manage logos, icons, and branding assets</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Upload Form */}
+            <div className="p-6 bg-[#F5F5DC]/30 border border-[#66023C]/20 rounded-lg mb-6">
+              <div className="flex items-center gap-4 mb-4">
+                <Upload className="h-5 w-5 text-[#66023C]"/>
+                <h4 className="font-semibold text-[#66023C]">Upload New Asset</h4>
+              </div>
+              <div className="space-y-4">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="asset-name">Asset Name</Label>
+                    <Input id="asset-name" placeholder="e.g., Ministry Logo" value={assetName} onChange={(e) => setAssetName(e.target.value)}/>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="asset-type">Asset Type</Label>
+                    <Select value={assetType} onValueChange={setAssetType}>
+                      <SelectTrigger id="asset-type">
+                        <SelectValue placeholder="Select type"/>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="header">Header Logo</SelectItem>
+                        <SelectItem value="login">Login Screen Logo</SelectItem>
+                        <SelectItem value="dashboard">Dashboard Icon</SelectItem>
+                        <SelectItem value="footer">Footer Logo</SelectItem>
+                        <SelectItem value="banner">Banner Image</SelectItem>
+                        <SelectItem value="other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="asset-file">Select Image File</Label>
+                  <Input id="asset-file" type="file" accept="image/*" onChange={handleFileChange}/>
+                  <p className="text-xs text-gray-500">Accepted formats: PNG, JPG, SVG (Max size: 5MB)</p>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="asset-description">Description (Optional)</Label>
+                  <Input id="asset-description" placeholder="Brief description of this asset" value={assetDescription} onChange={(e) => setAssetDescription(e.target.value)}/>
+                </div>
+                <Button className="w-full bg-[#66023C] hover:bg-[#4a0128]" onClick={handleUploadAsset} disabled={isUploading}>
+                  <Upload className="w-4 h-4 mr-2"/>
+                  {isUploading ? 'Uploading...' : 'Upload Asset'}
+                </Button>
+              </div>
+            </div>
+
+            {/* Current Assets Gallery */}
+            <div>
+              <h4 className="font-semibold text-[#66023C] mb-4">Current Assets</h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {/* Uploaded assets */}
+                {uploadedAssets.length > 0 ? (
+                  uploadedAssets.map(asset => (
+                    <div key={asset.id} className="relative group p-2 border-2 border-gray-300 rounded-lg bg-white hover:shadow-lg transition-shadow">
+                      <div className="aspect-square w-full flex items-center justify-center overflow-hidden rounded bg-gray-50">
+                        <img 
+                          src={asset.url} 
+                          alt={asset.name}
+                          className="max-w-full max-h-full object-contain"
+                        />
+                      </div>
+                      <div className="mt-2">
+                        <p className="text-sm font-medium text-gray-900 truncate">{asset.name}</p>
+                        <p className="text-xs text-gray-500 capitalize">{formatAssetType(asset.type)}</p>
+                        <p className="text-xs text-gray-400">{(asset.size / 1024).toFixed(2)} KB</p>
+                      </div>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="absolute top-2 right-2 bg-white/90 hover:bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity" 
+                        title="Delete" 
+                        onClick={() => handleDeleteAsset(asset.id)}
+                      >
+                        <Trash2 className="w-4 h-4 text-red-500"/>
+                      </Button>
+                    </div>
+                  ))
+                ) : (
+                  <div className="p-4 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center text-center h-40 bg-gray-50">
+                    <Image className="h-8 w-8 text-gray-400 mb-2"/>
+                    <p className="text-sm text-gray-500">No assets uploaded yet</p>
+                    <p className="text-xs text-gray-400 mt-1">Upload your first asset above</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Active Assets List */}
+            <Card className="p-6 border-[#66023C]/20">
+              <div className="flex items-center gap-3 mb-4">
+                <FileText className="h-5 w-5 text-[#66023C]"/>
+                <h3 className="font-bold text-[#66023C]">Asset Library</h3>
+              </div>
+              <div className="space-y-2">
+                <p className="text-sm text-gray-600">Total Assets: <strong>{uploadedAssets.length}</strong></p>
+                <p className="text-sm text-gray-600">Storage Used: <strong>{storageMB} MB</strong> / 100 MB</p>
+              </div>
+              <div className="mt-4 p-8 bg-gray-50 border rounded-lg text-center">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-200 rounded-full mb-3">
+                  <Image className="w-8 h-8 text-gray-400"/>
+                </div>
+                <p className="text-gray-600 font-medium">No assets in library</p>
+                <p className="text-sm text-gray-500 mt-1">Upload assets to see them listed here</p>
+              </div>
+            </Card>
+
+            {/* Asset Usage Guidelines */}
+            <Card className="p-6 border-[#66023C]/20 bg-blue-50">
+              <div className="flex items-center gap-3 mb-4">
+                <AlertTriangle className="h-5 w-5 text-blue-600"/>
+                <h3 className="font-bold text-blue-900">Asset Upload Guidelines</h3>
+              </div>
+              <ul className="space-y-2 text-sm text-blue-800">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                  <span>Use high-resolution images for logos (minimum 512x512px recommended)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                  <span>PNG format with transparent background works best for logos and icons</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                  <span>SVG format is ideal for scalable graphics and icons</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                  <span>Ensure all uploaded assets comply with government branding standards</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="w-4 h-4 mt-0.5 flex-shrink-0"/>
+                  <span>Recommended colors: Maroon (#66023C), Beige (#F5F5DC), and Black</span>
+                </li>
+              </ul>
+            </Card>
           </Card>
         </TabsContent>
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useLogo } from '@/contexts/LogoContext';
 import { Button } from '@/app/components/ui/button';
 import { LogOut, User as UserIcon, Home, Shield, UserPlus } from 'lucide-react';
 import { getRoleName } from '@/data/users';
@@ -12,6 +13,7 @@ type View = 'home' | 'hierarchy' | 'dashboard' | 'governance';
 
 export function DashboardRouter() {
   const { user, logout } = useAuth();
+  const { primaryLogo } = useLogo();
   const [currentView, setCurrentView] = useState<View>('dashboard');
   const [showCreateUserDialog, setShowCreateUserDialog] = useState(false);
 
@@ -27,68 +29,85 @@ export function DashboardRouter() {
   return (
     <div className="min-h-screen bg-[#FAF9F6]">
       {/* Top Navigation Bar */}
-      <div className="border-b sticky top-0 z-20 shadow-sm bg-[#66023C]">
+      <div 
+        className={`border-b sticky top-0 z-20 shadow-sm transition-all duration-200 ${
+          showCreateUserDialog ? 'bg-gray-400' : 'bg-[#66023C]'
+        }`}
+      >
         <div className="max-w-[1800px] mx-auto px-8 py-4">
           <div className="flex items-center justify-between">
-            {/* Left: Logo and Title */}
-            <div className="flex items-center gap-6">
-              <div className="h-12 w-12 bg-white rounded-full flex items-center justify-center">
-                <Shield className="w-6 h-6 text-[#66023C]" />
-              </div>
+            {/* Left: Logo & Title */}
+            <div className="flex items-center gap-3">
+              {primaryLogo ? (
+                <div className="bg-white rounded-full p-1 w-12 h-12 flex items-center justify-center overflow-hidden">
+                  <img 
+                    src={primaryLogo.url} 
+                    alt="Ministry Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ) : (
+                <div className="bg-white rounded-full p-2 w-12 h-12 flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-[#66023C]" />
+                </div>
+              )}
               <h1 className="text-xl font-bold text-white">
                 Ministry of Interior & National Administration
               </h1>
             </div>
 
-            {/* Center: Navigation Buttons */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-1 bg-black/20 rounded-lg p-1">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setCurrentView('dashboard')}
-                className={`text-white hover:text-white hover:bg-white/20 ${
-                  currentView === 'dashboard' ? 'bg-white/30 shadow-sm' : ''
-                }`}
-              >
-                <Home className="w-4 h-4 mr-2" />
-                My Dashboard
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setCurrentView('hierarchy')}
-                className={`text-white hover:text-white hover:bg-white/20 ${
-                  currentView === 'hierarchy' ? 'bg-white/30 shadow-sm' : ''
-                }`}
-              >
-                Organizational Chart
-              </Button>
-              {isSNA && (
+            {/* Right: Navigation Buttons & Logout */}
+            <div className="flex items-center gap-4">
+              {/* Navigation Buttons */}
+              <div className="flex items-center gap-1 bg-black/20 rounded-lg p-1">
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => setCurrentView('governance')}
+                  onClick={() => setCurrentView('dashboard')}
                   className={`text-white hover:text-white hover:bg-white/20 ${
-                    currentView === 'governance' ? 'bg-white/30 shadow-sm' : ''
+                    currentView === 'dashboard' ? 'bg-white/30 shadow-sm' : ''
                   }`}
                 >
-                  <Shield className="w-4 h-4 mr-2" />
-                  System Governance
+                  <Home className="w-4 h-4 mr-2" />
+                  My Dashboard
                 </Button>
-              )}
-            </div>
-
-            {/* Right: Create New Employee & Logout */}
-            <div className="flex items-center gap-4">
-              {isSNA && (
                 <Button
-                  onClick={() => setShowCreateUserDialog(true)}
-                  className="flex items-center gap-2 bg-[#8B7355] hover:bg-[#6d5940] text-white px-4 py-2 rounded-lg transition-colors shadow-md"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setCurrentView('hierarchy')}
+                  className={`text-white hover:text-white hover:bg-white/20 ${
+                    currentView === 'hierarchy' ? 'bg-white/30 shadow-sm' : ''
+                  }`}
                 >
-                  <UserPlus className="w-4 h-4 mr-2" />
-                  Create New Employee
+                  Organizational Chart
                 </Button>
-              )}
+                {isSNA && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setCurrentView('governance')}
+                    className={`text-white hover:text-white hover:bg-white/20 ${
+                      currentView === 'governance' ? 'bg-white/30 shadow-sm' : ''
+                    }`}
+                  >
+                    <Shield className="w-4 h-4 mr-2" />
+                    System Governance
+                  </Button>
+                )}
+                {isSNA && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowCreateUserDialog(true)}
+                    className="text-white hover:text-white hover:bg-white/20"
+                  >
+                    <UserPlus className="w-4 h-4 mr-2" />
+                    Create New Employee
+                  </Button>
+                )}
+              </div>
+              
+              {/* Logout Button */}
               <Button 
                 variant="outline" 
                 size="sm" 
