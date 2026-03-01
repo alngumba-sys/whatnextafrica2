@@ -7,8 +7,6 @@ import { HierarchyPage } from '@/app/components/HierarchyPage';
 import { RoleDashboard } from '@/app/components/RoleDashboard';
 import { SystemGovernance } from '@/app/components/SystemGovernance';
 import { CreateNewUserDialog } from '@/app/components/CreateNewUserDialog';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import coatOfArms from 'figma:asset/a4ef2a41d34a4fb02e01c58896dc3b258b86fad6.png';
 
 type View = 'home' | 'hierarchy' | 'dashboard' | 'governance';
 
@@ -34,7 +32,9 @@ export function DashboardRouter() {
           <div className="flex items-center justify-between">
             {/* Left: Logo and Title */}
             <div className="flex items-center gap-6">
-              <ImageWithFallback src={coatOfArms} alt="Coat of Arms" className="h-12 w-auto" />
+              <div className="h-12 w-12 bg-white rounded-full flex items-center justify-center">
+                <Shield className="w-6 h-6 text-[#66023C]" />
+              </div>
               <h1 className="text-xl font-bold text-white">
                 Ministry of Interior & National Administration
               </h1>

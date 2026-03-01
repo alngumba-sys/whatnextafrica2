@@ -9,8 +9,6 @@ import { Label } from '@/app/components/ui/label';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/app/components/ui/command';
 import { Popover, PopoverContent, PopoverTrigger } from '@/app/components/ui/popover';
 import { cn } from '@/app/components/ui/utils';
-import { ImageWithFallback } from '@/app/components/figma/ImageWithFallback';
-import coatOfArms from 'figma:asset/a4ef2a41d34a4fb02e01c58896dc3b258b86fad6.png';
 
 export function LoginPage() {
   const [selectedUsername, setSelectedUsername] = useState('');
@@ -53,7 +51,9 @@ export function LoginPage() {
           {/* Header */}
           <div className="text-center mx-[0px] mt-[0px] mb-[7px]">
             <div className="flex justify-center mb-4">
-              <ImageWithFallback src={coatOfArms} alt="Kenya Coat of Arms" className="h-24 w-auto" />
+              <div className="w-24 h-24 bg-[#66023C] rounded-full flex items-center justify-center">
+                <Shield className="w-12 h-12 text-white" />
+              </div>
             </div>
             <p className="font-semibold text-gray-600 uppercase tracking-wide text-[16px] mx-[0px] mt-[-10px] mb-[8px]">
               Office of the President
