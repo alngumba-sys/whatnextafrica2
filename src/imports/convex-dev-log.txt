@@ -1,0 +1,54 @@
+^C%                                                                                                                            albert@192 OP Transfers % # Remove existing convex artifacts
+rm -rf .convex
+rm -rf node_modules/.convex
+
+# Uninstall and reinstall convex
+npm uninstall convex
+npm install convex@latest
+zsh: command not found: #
+zsh: command not found: #
+
+added 280 packages, and audited 281 packages in 2m
+
+34 packages are looking for funding
+  run `npm fund` for details
+
+1 moderate severity vulnerability
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+added 6 packages, removed 1 package, and audited 286 packages in 8s
+
+34 packages are looking for funding
+  run `npm fund` for details
+
+1 moderate severity vulnerability
+
+To address all issues, run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+albert@192 OP Transfers % convex dev
+✔ Added table indexes:
+  [+] createdUsers.by_email   email, _creationTime
+  [+] createdUsers.by_role   role, _creationTime
+  [+] createdUsers.by_status   status, _creationTime
+  [+] leaveApplications.by_applicant   applicantId, _creationTime
+  [+] leaveApplications.by_approver   approverId, _creationTime
+  [+] leaveApplications.by_status   status, _creationTime
+  [+] leaveBalances.by_officer   officerId, _creationTime
+  [+] leaveRecords.by_officer   officerId, _creationTime
+  [+] leaveRecords.by_status   status, _creationTime
+  [+] transfers.by_initiator   initiatedBy, _creationTime
+  [+] transfers.by_officer   officerId, _creationTime
+  [+] transfers.by_status   status, _creationTime
+  [+] users.by_county   county, _creationTime
+  [+] users.by_email   email, _creationTime
+  [+] users.by_region   region, _creationTime
+  [+] users.by_role   role, _creationTime
+  [+] users.by_username   username, _creationTime
+✔ 10:51:00 Convex functions ready! (5.98s)
+

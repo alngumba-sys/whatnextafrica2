@@ -1,0 +1,58 @@
+# 3-MIN SCRIPT - CHEAT SHEET
+
+## 🎬 [0:00-0:15] INTRO + QR
+"Welcome! Kenya Gov Admin Platform. **2,464 officers, 47 counties**. Scan QR to try it."
+→ Show QR code 5 seconds
+
+## 📊 [0:15-0:45] DASHBOARD
+"Logging in as Cabinet Secretary. Dashboard shows 2,464 officers, 6 levels, dual-track system. Pending transfers, active officers, real-time status."
+→ Login (cs.interior), point to stats
+
+## 👥 [0:45-1:15] ROLE ACCESS + OFFICERS
+"Role-based access. Cabinet Secretary sees all 47 counties. Regional Coordinators see their region only. Data privacy and efficient management. Browse officers, filter, view profiles with service history."
+→ Officers list, filter, click profile
+
+## 🔄 [1:15-2:00] TRANSFERS
+"Multi-level approval workflows. Transfer DC from Westlands to Kibra. System auto-identifies approval chain: supervisor → County Commissioner → Regional Coordinator. Complete audit trail. Transparent and accountable. Track full transfer history."
+→ New Transfer, select officer, show approval chain
+
+## 🤖 [2:00-2:30] AI + LEAVE
+"AI reshuffle tool analyzes service years, performance, regional balance. Suggests optimal placements. Saves hundreds of hours. Officers manage leave applications. Check balances. Supervisors approve with leave calendar."
+→ Show AI tool, show Leave section
+
+## 📈 [2:30-2:45] REPORTS
+"Comprehensive analytics. Officer distribution, transfer trends, leave stats, dashboards. Filter, export to Excel/PDF. Data-driven decisions. **Supports Kenya Vision 2030** governance reforms."
+→ Reports dashboard, charts
+
+## 🎯 [2:45-3:00] CONCLUSION + QR
+"Complete officer management, multi-level workflows, AI optimization, real-time analytics. Efficient, transparent public service delivery. **Scan QR to explore**. Thank you!"
+→ Show QR code 7+ seconds
+
+---
+
+## ⚡ QUICK REFERENCE
+
+**Login:** cs.interior  
+**QR Code:** Show at 0:00 (5s) and 2:50 (7s)  
+**Pace:** 150 words/min (moderate, clear)  
+**Total:** 3 minutes
+
+**Key Numbers to Emphasize:**
+- 2,464 officers ✨
+- 47 counties ✨
+- 6 levels ✨
+- Kenya Vision 2030 ✨
+
+**If Running Long:** Skip officer profile scroll, shorten AI section
+
+---
+
+## ✓ CHECKLIST
+□ Platform open  
+□ Logged in  
+□ QR ready  
+□ Practiced 2-3x  
+□ Timer set  
+□ Mic on  
+
+**→ BREATHE & GO! 🎬**

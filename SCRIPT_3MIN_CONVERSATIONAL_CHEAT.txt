@@ -1,0 +1,62 @@
+# 🎤 CONVERSATIONAL SCRIPT - CHEAT SHEET
+
+**Style:** Natural talk while browsing  
+**Duration:** 3 min  
+**Approach:** Show & tell, not formal presentation
+
+---
+
+## Quick Flow
+
+**[QR 5sec]** "Welcome! Scan this QR. Let me show you what this platform does."
+
+**[Login → Dashboard]** "Logging in as Cabinet Secretary... managing **2,464 officers across 47 counties**. Six-level hierarchy from Cabinet Secretary down to Assistant Commissioners. Dual-track: County Admin + Secretariat."
+
+**[Officers section]** "**Role-based access** – I see all officers, but Regional Coordinators only see their region, County Commissioners see their county. Secure and efficient. Can filter by region, county, role. Click any officer – complete profile, posting, supervisor, service years, **transfer history, leave balance**. Everything in one place."
+
+**[Transfers]** "Creating a transfer – moving DC from Westlands to Kibra. System **auto-detects approval chain**: supervisor → County Commissioner → Regional Coordinator. Each approver reviews, approves/rejects with comments. **Complete audit trail** – total transparency. Track entire lifecycle."
+
+**[Leave]** "Officers apply for leave here. System checks balance, no overlaps, routes to supervisor. Supervisors see team calendar for adequate staffing."
+
+**[AI Reshuffle]** "**AI-powered innovation** – analyzes service years, performance, regional balance, suggests optimal placements. Smart recommendations in minutes, not weeks."
+
+**[Reports]** "Comprehensive analytics – officer distribution, transfer trends, leave stats, dashboards. **Export to Excel/PDF**. Real-time updates for **data-driven decisions**."
+
+**[Wrap]** "Platform supports **Kenya Vision 2030** – transparency, accountability, efficient public service. Managing 2,464 officers, 47 counties, AI optimization, multi-level workflows, real-time analytics."
+
+**[QR 7sec]** "Scan to explore yourself. Thanks!"
+
+---
+
+## 💡 Remember
+
+- **Talk while clicking** – describe what you're doing
+- **Sound natural** – like showing a friend
+- **Use:** "you can see", "let me show you", "watch this"
+- **Pause naturally** when screens load
+- **Don't memorize** – use your own words
+- **Show enthusiasm** for cool features!
+
+---
+
+## ⚡ Key Numbers to Hit
+
+- 2,464 officers ✨
+- 47 counties ✨
+- 6-level hierarchy ✨
+- AI-powered ✨
+- Kenya Vision 2030 ✨
+
+---
+
+## 🎯 Must Show
+
+✓ Dashboard stats  
+✓ Officers filtering  
+✓ Transfer creation  
+✓ Approval chain  
+✓ QR code (start + end)
+
+---
+
+**JUST TALK NATURALLY WHILE YOU BROWSE! 🎥**

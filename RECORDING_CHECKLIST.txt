@@ -1,0 +1,149 @@
+📋 Pre-Recording Checklist for Video Walkthrough
+================================================
+
+BEFORE YOU START RECORDING:
+
+□ DEPLOYMENT & QR CODE
+  □ Platform deployed and URL working
+  □ QR code generated and tested (scan with phone)
+  □ QR code image ready (qr-code.png)
+  □ Database seeded with 2,464 officers
+
+□ ENVIRONMENT SETUP
+  □ Desktop cleaned (close unnecessary apps)
+  □ Notifications disabled (Do Not Disturb mode)
+  □ Browser set up:
+    □ Chrome Incognito/Guest mode (clean profile)
+    □ Bookmarks bar hidden (Cmd/Ctrl + Shift + B)
+    □ Extensions disabled
+    □ Zoom at 100%
+    □ Window size: 1920x1080 or consistent size
+  □ Clean wallpaper/background
+
+□ AUDIO SETUP
+  □ Microphone tested and working
+  □ Quiet environment (no background noise)
+  □ Headphones ready (to monitor audio)
+  □ External mic connected (if using)
+  □ Audio levels tested (not too loud, not too soft)
+
+□ RECORDING SOFTWARE
+  □ Screen recording software installed and tested
+  □ Recording settings configured:
+    □ Resolution: 1920x1080 (1080p)
+    □ Frame Rate: 30fps or 60fps
+    □ Audio input selected (correct microphone)
+    □ Save location set
+  □ Test recording done (30 seconds to check quality)
+
+□ DEMO PREPARATION
+  □ Script written and practiced (2-3 times)
+  □ Demo accounts prepared:
+    □ cs.interior (Cabinet Secretary)
+    □ rc.nairobi (Regional Coordinator)
+    □ cc.nairobi (County Commissioner)
+    □ dc.nairobi.westlands (Deputy County Commissioner)
+  □ Know what you'll demonstrate in each section
+  □ Practice transitions between sections
+  □ Timing practiced (aim for 10-12 minutes total)
+
+□ TEST DATA READY
+  □ Database has 2,464 officers
+  □ Sample transfers exist
+  □ Leave records populated
+  □ No test/dummy data visible that shouldn't be
+  □ All features working correctly
+
+□ BROWSER TABS PREPARED
+  □ Tab 1: Platform login page
+  □ Tab 2: QR code preview (if showing during recording)
+  □ All other tabs closed
+  □ Platform fully loaded and tested
+
+□ DEMO FLOW PLANNED
+  □ Introduction (30s) - script ready
+  □ Dashboard overview (1m) - know what to show
+  □ Role-based access demo (1.5m) - login credentials ready
+  □ Officer management (2m) - know which officers to show
+  □ Transfer workflow (2.5m) - test transfer prepared
+  □ Leave management (1.5m) - know the flow
+  □ AI reshuffle (1.5m) - parameters decided
+  □ Reports (1m) - know which reports to show
+  □ Conclusion (30s) - script ready
+
+□ VISUAL ENHANCEMENTS
+  □ Cursor/pointer visible and easy to see
+  □ Mouse movements practiced (smooth, not jerky)
+  □ Know when to zoom in (if using magnifier)
+  □ Transitions between sections planned
+
+□ BACKUP PLAN
+  □ Second microphone available
+  □ Alternative recording software installed
+  □ Script printed (in case you need to reference)
+  □ Water nearby (for dry mouth)
+  □ Know how to restart if something goes wrong
+
+□ FINAL CHECKS
+  □ Battery charged (if laptop)
+  □ Do Not Disturb mode ON
+  □ Phone on silent and away
+  □ "Recording" sign on door (if in office)
+  □ Comfortable seating
+  □ Good lighting (if showing face)
+  □ Deep breath and relax! 😊
+
+================================================
+
+DURING RECORDING:
+
+✓ Speak clearly and at moderate pace
+✓ Pause between sections (easier to edit)
+✓ If you make a mistake, pause, then restart that sentence
+✓ Smile (even if not on camera - it shows in your voice!)
+✓ Use the script but sound natural
+✓ Show QR code at beginning and end (5+ seconds each)
+
+================================================
+
+AFTER RECORDING:
+
+□ Review the recording immediately
+□ Check audio quality
+□ Check video quality
+□ Verify QR code is visible and clear
+□ Note timestamp of any sections that need re-recording
+□ Save raw recording in safe location (backup!)
+□ Ready to edit!
+
+================================================
+
+QUICK REFERENCE - LOGIN CREDENTIALS:
+
+Cabinet Secretary: cs.interior
+Regional Coordinator: rc.nairobi
+County Commissioner: cc.nairobi
+Deputy Commissioner: dc.nairobi.westlands
+Assistant Commissioner: acc.nairobi.westlands.001
+
+Password: (any password works in demo mode)
+
+================================================
+
+ESTIMATED TIMING:
+
+Introduction: 0:00 - 0:30
+Dashboard: 0:30 - 1:30
+Role Access: 1:30 - 3:00
+Officers: 3:00 - 5:00
+Transfers: 5:00 - 7:30
+Leave: 7:30 - 9:00
+AI Reshuffle: 9:00 - 10:30
+Reports: 10:30 - 11:30
+Conclusion: 11:30 - 12:00
+
+TOTAL: ~12 minutes
+
+================================================
+
+Good luck! You've got this! 🎬🚀
