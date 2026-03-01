@@ -32,15 +32,11 @@ Created `/netlify.toml`:
   command = "npm run build"
   publish = "dist"
 
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
 [build.environment]
   NODE_VERSION = "18"
-
-[build.processing]
-  skip_processing = false
 ```
+
+**Note:** This is a Vite/React project, NOT Next.js, so no Next.js plugins are needed.
 
 ### 4. Verified all code is clean
 Confirmed zero remaining references to `figma:asset` in the entire codebase.
