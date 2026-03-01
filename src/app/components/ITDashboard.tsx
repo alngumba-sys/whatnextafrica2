@@ -760,6 +760,18 @@ export function ITDashboard() {
                 <Upload className="h-5 w-5 text-[#66023C]"/>
                 <h4 className="font-semibold text-[#66023C]">Upload New Asset</h4>
               </div>
+              
+              {/* Persistence Info Banner */}
+              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-start gap-2">
+                <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div className="text-sm text-green-800">
+                  <p className="font-semibold">Assets Persist Across Sessions</p>
+                  <p className="text-xs text-green-700 mt-1">
+                    All uploaded logos and assets are saved automatically and will remain visible to all users, even after logout or browser refresh.
+                  </p>
+                </div>
+              </div>
+
               <div className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">

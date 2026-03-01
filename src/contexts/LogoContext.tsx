@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export interface UploadedAsset {
   id: string;
@@ -21,8 +21,34 @@ interface LogoContextType {
 
 const LogoContext = createContext<LogoContextType | undefined>(undefined);
 
+const STORAGE_KEY = 'kenya-admin-uploaded-assets';
+
 export function LogoProvider({ children }: { children: ReactNode }) {
-  const [uploadedAssets, setUploadedAssets] = useState<UploadedAsset[]>([]);
+  const [uploadedAssets, setUploadedAssets] = useState<UploadedAsset[]>(() => {
+    // Load from localStorage on initialization
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch (error) {
+        console.error('Error loading assets from localStorage:', error);
+      }
+    }
+    return [];
+  });
+
+  // Persist to localStorage whenever assets change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(uploadedAssets));
+      } catch (error) {
+        console.error('Error saving assets to localStorage:', error);
+      }
+    }
+  }, [uploadedAssets]);
 
   const addAsset = (asset: UploadedAsset) => {
     setUploadedAssets((prev) => [...prev, asset]);
